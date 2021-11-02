@@ -87,9 +87,10 @@ const MovieCard = ({movieName, moviePoster, rating, description}) => {
         <h2 className="movie-name">{movieName}</h2>
         <div className="rating">
           {[1,2,3,4,5].map((star)=>{
+            console.log(rating)
                 return(
                     <>
-                    <span>{rating + 1 === star + 0.5 ? <FaStarHalfAlt className='star-color' /> : rating > star ? <FaStar className='star-color' /> : <FiStar className='star-color' />}</span>
+                    <span>{rating + 1 === star + 0.5 ? <FaStarHalfAlt className='star-color' /> : rating >= star ? <FaStar className='star-color' /> : <FiStar className='star-color' />}</span>
                     </>
                 )
             })}
