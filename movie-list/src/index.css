@@ -106,15 +106,15 @@ body {
 }
 
 .form-wrapper form {
-  width: 50%;
+  width: 100%;
 }
 
-.form-control > .css-1u3bzj6-MuiFormControl-root-MuiTextField-root {
+.form-control > .userInput {
   width: 100%;
   margin-bottom: 15px;
 }
 
-form > .css-sghohy-MuiButtonBase-root-MuiButton-root {
+form > .submitBtn {
   margin-top: 10px;
 }
 
@@ -143,6 +143,10 @@ form > .css-sghohy-MuiButtonBase-root-MuiButton-root {
 
   .movie-card > img {
     width: 100%;
+  }
+
+  .form-wrapper form {
+    width: 50%;
   }
 }
 

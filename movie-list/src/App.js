@@ -55,13 +55,13 @@ function App() {
       <article className="container form-wrapper">
           <form>
             <div className="form-control">
-              <TextField label='Movie Name' placeholder='Enter Movie Name' id="movieName" name="name" value={singleMovie.name} onChange={handleChange} multiline variant="standard" />
+              <TextField className="userInput" label='Movie Name' placeholder='Enter Movie Name' id="movieName" name="name" value={singleMovie.name} onChange={handleChange} multiline variant="standard" />
             </div>
             <div className="form-control">
-              <TextField label='Image URL' placeholder='Enter Image URL' id="movieURL" name="url" value={singleMovie.url} onChange={handleChange} multiline variant="standard" />
+              <TextField className="userInput" label='Image URL' placeholder='Enter Image URL' id="movieURL" name="url" value={singleMovie.url} onChange={handleChange} multiline variant="standard" />
             </div>
             <div className="form-control">
-              <TextField label='Description' placeholder='Enter Description' id="description" name="description" value={singleMovie.description} onChange={handleChange} multiline variant="standard" />
+              <TextField className="userInput" label='Description' placeholder='Enter Description' id="description" name="description" value={singleMovie.description} onChange={handleChange} multiline variant="standard" />
             </div>
             
             <div className="form-control">
@@ -73,7 +73,7 @@ function App() {
                 />
               </Stack>
             </div>
-            <Button variant="contained" size="medium" onClick={handleSubmit} type="submit">Add Movie</Button>
+            <Button className="submitBtn" variant="contained" size="medium" onClick={handleSubmit} type="submit">Add Movie</Button>
           </form>
       </article>
       <div className="container">
