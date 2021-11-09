@@ -4,6 +4,16 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Rating from '@mui/material/Rating';
 import Stack from '@mui/material/Stack';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import IconButton from '@mui/material/IconButton';
+import Badge from '@mui/material/Badge';
+import ThumbUpIcon from '@mui/icons-material/ThumbUp';
+import ThumbDownIcon from '@mui/icons-material/ThumbDown';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 
 function App() {
   const movieList = [
@@ -52,8 +62,8 @@ function App() {
         <h1>Movie List</h1>
       </div>
       <>
-      <article className="container form-wrapper">
-          <form>
+      <article className="container">
+          <form className="form-wrapper">
             <div className="form-control">
               <TextField className="userInput" label='Movie Name' placeholder='Enter Movie Name' id="movieName" name="name" value={singleMovie.name} onChange={handleChange} multiline variant="standard" />
             </div>
@@ -88,9 +98,6 @@ function App() {
 }
 
 const MovieCard = ({movieName, moviePoster, rating, description}) => {
-  const despTruncate = (string, n) => {
-    return string?.length > n ? string.substr(0,n-1) + '...' : string
-}
 
   const [show, setShow] = useState(false)
 
@@ -103,29 +110,48 @@ const MovieCard = ({movieName, moviePoster, rating, description}) => {
     fontWeight: '900'
   }
 
+  const expandMoreStyle = {
+    transform: !show ? 'rotate(0deg)' : 'rotate(180deg)',
+    transition: 'all 0.5s ease'
+  }
+
+  const[favorite, setFavorite] = useState(true)
+
   return(
     <>
-    <div className="movie-card">
+    <Card className="movie-card">
       <img className="movie-poster" src={moviePoster} alt={movieName} />
-      <div className="movieName-div">
-        <h2 className="movie-name">{movieName}</h2>
-        <div className="rating" style={ratingColor}>
-            <Stack spacing={1}>
-              <Rating name="half-rating-read" value={rating} precision={0.5} readOnly />
-            </Stack>
-            {rating}/5
-        </div>
-        <p>{despTruncate(description, 100)}</p>
-        <p onClick={()=>{setShow(!show)}} className='feedback-option'>{show ? 'Hide feedback...' : 'Show feedback...'}</p>
-        <div className="feedback-div" style={feedbackShow}>
-          <p><b>Found this helpful?</b></p>
-          <div className="like-dislike-div">
-            <LikeButton />
-            <DislikeButton />
+      <CardContent>
+        <div className="movieName-div">
+          <div className="movie-head">
+            <h3 className="movie-name">{movieName}</h3>
+            <IconButton onClick={()=>{setShow(!show)}}>
+              <ExpandMoreIcon style={expandMoreStyle} />
+            </IconButton>
+          </div>
+          <div className="rating" style={ratingColor}>
+              <Stack spacing={1}>
+                <Rating name="half-rating-read" value={rating} precision={0.5} readOnly />
+              </Stack>
+              {rating}/5
+          </div>
+          <div className="feedback-div" style={feedbackShow}>
+            <p>{description}</p>
+            <p><b>Found this helpful?</b></p>
+            <div className="like-dislike-div">
+              <LikeButton />
+              <DislikeButton />
+            </div>
           </div>
         </div>
-      </div>
-    </div>
+      </CardContent>
+      <CardActions disableSpacing className='addFavourite'>
+        <IconButton aria-label="add to favorites" color='error' onClick={()=>setFavorite(!favorite)}>
+          <FavoriteIcon/>
+        </IconButton>
+        {favorite ? 'Add to Favourites' : 'Remove from Favourites'}
+      </CardActions>
+    </Card>
     </>
   )
 }
@@ -134,7 +160,11 @@ const LikeButton = () => {
   const [like,setLike] = useState(0)
   
   return(
-    <button className="like-dislike-btn" onClick={()=>{setLike(like + 1)}}>Like 👍 {like}</button>
+    <IconButton className="like-dislike-btn" onClick={()=>{setLike(like + 1)}}>
+      <Badge badgeContent={like} color="primary" className="thumb-color">
+        <ThumbUpIcon />
+      </Badge>
+    </IconButton>
   )
 }
 
@@ -142,7 +172,11 @@ const DislikeButton = () => {
   const [dislike, setDislike] = useState(0)
 
   return(
-    <button className="like-dislike-btn" onClick={()=>{setDislike(dislike - 1)}}>Dislike 👎 {dislike}</button>
+    <IconButton className="like-dislike-btn" onClick={()=>{setDislike(dislike - 1)}}>
+      <Badge badgeContent={dislike} color="error" className="thumb-color">
+        <ThumbDownIcon />
+      </Badge>
+    </IconButton>
   )
 }
 
