@@ -1,0 +1,29 @@
+.color-box {
+  flex-direction: column !important;
+  width: 650px;
+  margin-top: 120px;
+}
+
+.card-div {
+  margin-top: 25px;
+}
+
+.card-div > * {
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.input-div {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.input-div > * {
+  margin-bottom: 10px !important;
+}
+
+.input-field {
+  background-color: white;
+  outline: none;
+}
