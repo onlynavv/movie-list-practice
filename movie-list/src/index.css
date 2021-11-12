@@ -111,9 +111,9 @@ body {
 }
 
 .form-wrapper {
-  background-color: white;
+  /* background-color: white; */
   border-radius: 5px;
-  box-shadow: 3px 4px 10px 3px #c9c9c9;
+  /* box-shadow: 3px 4px 10px 3px #c9c9c9; */
   padding: 30px;
 }
 
@@ -148,7 +148,7 @@ form > .submitBtn {
 }
 
 nav {
-  background: #fff;
+  background-color: #fff;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
@@ -162,6 +162,9 @@ nav {
 .links-container {
   height: auto;
   overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .links {
@@ -191,7 +194,7 @@ a {
 
 .nav-center {
   max-width: 1170px;
-  margin: 0 auto;
+  margin: 0 35px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -224,10 +227,9 @@ a {
   display: grid;
   grid-template-rows: auto 1fr auto;
   row-gap: 1rem;
-  box-shadow: #bb2525;
   transition: all 0.3s linear;
   transform: translate(-100%);
-  z-index: 99;
+  z-index: 9999;
 }
 .show-sidebar {
   transform: translate(0);

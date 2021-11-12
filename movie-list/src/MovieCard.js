@@ -9,10 +9,18 @@ import CardContent from '@mui/material/CardContent';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import IconButton from '@mui/material/IconButton';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import { useHistory } from 'react-router-dom';
+import { useGlobalContext } from './context';
 
-const MovieCard = ({movieName, moviePoster, rating, description}) => {
+const MovieCard = ({id, name, url, rating, description}) => {
 
   const [show, setShow] = useState(false)
+
+  const {deleteMovie} = useGlobalContext()
+
+  const history = useHistory()
 
   const feedbackShow = {
     display: show ? 'block' : 'none'
@@ -33,11 +41,11 @@ const MovieCard = ({movieName, moviePoster, rating, description}) => {
   return(
     <>
     <Card className="movie-card">
-      <img className="movie-poster" src={moviePoster} alt={movieName} />
+      <img className="movie-poster" src={url} alt={name} />
       <CardContent>
         <div className="movieName-div">
           <div className="movie-head">
-            <h3 className="movie-name">{movieName}</h3>
+            <h3 className="movie-name">{name} <IconButton onClick={()=>{console.log(id);history.push(`/movielist/${id}`)}}><InfoOutlinedIcon></InfoOutlinedIcon></IconButton> </h3>
             <IconButton onClick={()=>{setShow(!show)}}>
               <ExpandMoreIcon style={expandMoreStyle} />
             </IconButton>
@@ -54,6 +62,9 @@ const MovieCard = ({movieName, moviePoster, rating, description}) => {
             <div className="like-dislike-div">
               <LikeButton />
               <DislikeButton />
+              <IconButton onClick={()=>deleteMovie(id)}>
+                <DeleteOutlineIcon />
+              </IconButton>
             </div>
           </div>
         </div>
